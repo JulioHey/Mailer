@@ -1,30 +1,9 @@
-import { 
-    Request,
-    Response
-} from 'express';
-import nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer';
+nodemailer = require("nodemailer")
 
-interface emailOptionsProps {
-    from: string;
-    to: string;
-    subject: string;
-    text?: string;
-}
 
-interface textProps {
-    name: string;
-    email: string;
-    cell: string;
-    church: string;
-    city: string;
-    mission: string;
-    why: string;
-}
-
-export class Mailer {
-    transporter: Mail
-    emailOptions: emailOptionsProps
+class Mailer {
+    transporter;
+    emailOptions;
 
     constructor() {
         this.transporter = nodemailer.createTransport({
@@ -43,9 +22,9 @@ export class Mailer {
 
     }
 
-    sendEmail= async(request: Request, response: Response) => {
+    sendEmail= async(request, response) => {
         try {
-            const unformattedText: textProps = request.body;
+            const unformattedText = request.body;
 
             const text = `Nome: ${unformattedText.name}
             Email: ${unformattedText.email}
@@ -76,3 +55,5 @@ export class Mailer {
         }
     }
 }
+
+module.exports = Mailer;
