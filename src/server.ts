@@ -18,4 +18,4 @@ router.get("/embaixadores", mailer.sendEmail);
 
 app.use(router);
 
-app.listen(3333);
+app.listen(80);
