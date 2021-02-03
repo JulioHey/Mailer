@@ -1,7 +1,11 @@
+dotenv = require("dotenv")
+
 const cors = require("cors");
 const express = require("express");
 
-const Mailer = require("./controllers/email.controller");
+dotenv.config();
+
+const Mailer = require("./src/controllers/email.controller");
 
 
 const app = express();
@@ -12,8 +16,14 @@ app.use(cors());
 
 const mailer = new Mailer();
 
+
+router.get("/", (req, res) => {
+    return res.send("HEllo")
+})
 router.get("/embaixadores", mailer.sendEmail);
 
 app.use(router);
 
-app.listen(80);
+const port = process.env.PORT || 3333;
+
+app.listen(port);
