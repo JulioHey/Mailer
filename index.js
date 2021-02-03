@@ -24,6 +24,13 @@ router.get("/embaixadores", mailer.sendEmail);
 
 app.use(router);
 
-const port = process.env.PORT || 3333;
+let port;
+if (process.env.PORT) {
+    port = process.env.PORT;
+} else {
+    port = 3333;
+};
 
-app.listen(port);
+app.listen(port, ()=> {
+    console.log(`App is listening on prot ${port}`)
+});
