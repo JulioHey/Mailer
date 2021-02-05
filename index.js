@@ -20,7 +20,7 @@ const mailer = new Mailer();
 router.get("/", (req, res) => {
     return res.send("HEllo")
 })
-router.get("/embaixadores", mailer.sendEmail);
+router.post("/embaixadores", mailer.sendEmail);
 
 app.use(router);
 
